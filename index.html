@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Studentin — Connect. Learn. Grow.</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f7f6f3;
+  --surface: #ffffff;
+  --border: #e8e4dc;
+  --text: #0f0e0c;
+  --text2: #6b6558;
+  --text3: #aaa69d;
+  --accent: #1a56db;
+  --accent2: #0ea5e9;
+  --accent3: #7c3aed;
+  --green: #059669;
+  --shadow: 0 4px 24px rgba(15,14,12,.07);
+  --shadow-lg: 0 20px 60px rgba(15,14,12,.12);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  font-family:'Geist',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
+  min-height:100vh;
+}
+
+/* Grain overlay */
+body::after {
+  content:'';
+  position:fixed; inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events:none; z-index:1000;
+}
+
+/* NAV */
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:500;
+  padding:0 5vw;
+  height:68px;
+  display:flex; align-items:center; justify-content:space-between;
+  background:rgba(247,246,243,.85);
+  backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--border);
+}
+.logo {
+  font-family:'Instrument Serif',serif;
+  font-size:26px;
+  color:var(--text);
+  text-decoration:none;
+  letter-spacing:-.01em;
+  display:flex; align-items:center; gap:10px;
+}
+.logo-mark {
+  width:32px; height:32px;
+  background:var(--text);
+  border-radius:8px;
+  display:flex; align-items:center; justify-content:center;
+}
+.logo-mark svg { width:18px; height:18px; }
+.nav-links { display:flex; align-items:center; gap:2px; }
+.nav-link {
+  padding:8px 16px;
+  border-radius:100px;
+  font-size:14px; font-weight:500;
+  color:var(--text2);
+  text-decoration:none;
+  border:none; background:none;
+  cursor:pointer; font-family:'Geist',sans-serif;
+  transition:all .15s;
+}
+.nav-link:hover { color:var(--text); background:rgba(15,14,12,.05); }
+.nav-cta { display:flex; align-items:center; gap:10px; }
+.btn {
+  display:inline-flex; align-items:center; gap:8px;
+  padding:9px 22px; border-radius:100px;
+  font-family:'Geist',sans-serif; font-size:14px; font-weight:600;
+  cursor:pointer; border:none; text-decoration:none;
+  transition:all .2s;
+}
+.btn-ghost { background:none; color:var(--text2); }
+.btn-ghost:hover { color:var(--text); background:rgba(15,14,12,.05); }
+.btn-dark { background:var(--text); color:#fff; }
+.btn-dark:hover { background:#2a2825; transform:translateY(-1px); box-shadow:0 6px 20px rgba(15,14,12,.2); }
+.btn-accent { background:var(--accent); color:#fff; }
+.btn-accent:hover { background:#1648c5; transform:translateY(-1px); box-shadow:0 6px 20px rgba(26,86,219,.3); }
+
+/* HERO */
+.hero {
+  min-height:100vh;
+  display:flex; flex-direction:column;
+  align-items:center;
+  padding-top:68px;
+  position:relative;
+  overflow:hidden;
+}
+
+/* Hero top text */
+.hero-top {
+  padding:80px 5vw 0;
+  text-align:center;
+  position:relative; z-index:10;
+  max-width:900px; margin:0 auto;
+}
+.hero-pill {
+  display:inline-flex; align-items:center; gap:8px;
+  padding:6px 16px 6px 8px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:100px;
+  font-size:13px; font-weight:500; color:var(--text2);
+  margin-bottom:28px;
+  box-shadow:var(--shadow);
+}
+.pill-dot {
+  width:22px; height:22px; border-radius:100px;
+  background:linear-gradient(135deg,var(--accent),var(--accent3));
+  display:flex; align-items:center; justify-content:center;
+  font-size:11px;
+}
+.hero-top h1 {
+  font-family:'Instrument Serif',serif;
+  font-size:clamp(52px,7vw,90px);
+  line-height:1.02;
+  letter-spacing:-.03em;
+  color:var(--text);
+  margin-bottom:20px;
+}
+.hero-top h1 em {
+  font-style:italic;
+  background:linear-gradient(135deg,var(--accent) 0%,var(--accent3) 100%);
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+}
+.hero-top p {
+  font-size:clamp(16px,1.8vw,19px);
+  color:var(--text2);
+  line-height:1.65;
+  font-weight:300;
+  max-width:560px;
+  margin:0 auto 36px;
+}
+.hero-btns { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-bottom:20px; }
+.btn-lg { padding:13px 32px; font-size:15px; }
+.hero-social-proof {
+  display:flex; align-items:center; gap:10px;
+  justify-content:center;
+  font-size:13px; color:var(--text3);
+}
+.proof-avatars { display:flex; }
+.proof-av {
+  width:28px; height:28px; border-radius:50%;
+  border:2px solid var(--bg);
+  margin-left:-8px; font-size:11px; font-weight:700;
+  display:flex; align-items:center; justify-content:center;
+  color:#fff;
+}
+.proof-av:first-child { margin-left:0; }
+
+/* EARTH CANVAS SECTION */
+.earth-section {
+  width:100%;
+  height:580px;
+  position:relative;
+  margin-top:20px;
+  flex-shrink:0;
+}
+#earthCanvas {
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+}
+
+/* Fade top & bottom */
+.earth-section::before {
+  content:'';
+  position:absolute; top:0; left:0; right:0;
+  height:120px;
+  background:linear-gradient(to bottom, var(--bg), transparent);
+  z-index:5; pointer-events:none;
+}
+.earth-section::after {
+  content:'';
+  position:absolute; bottom:0; left:0; right:0;
+  height:160px;
+  background:linear-gradient(to top, var(--bg), transparent);
+  z-index:5; pointer-events:none;
+}
+
+/* Floating student cards */
+.student-card {
+  position:absolute;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:12px 16px;
+  box-shadow:var(--shadow-lg);
+  display:flex; align-items:center; gap:10px;
+  font-size:13px;
+  z-index:20;
+  animation:floatCard var(--fd,4s) ease-in-out infinite alternate;
+  backdrop-filter:blur(10px);
+  white-space:nowrap;
+}
+@keyframes floatCard {
+  from { transform:translateY(0) rotate(var(--rot,-1deg)); }
+  to   { transform:translateY(-14px) rotate(var(--rot2,1deg)); }
+}
+.sc-avatar {
+  width:36px; height:36px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:14px; font-weight:700; color:#fff; flex-shrink:0;
+}
+.sc-name { font-weight:600; font-size:13px; }
+.sc-sub { font-size:11px; color:var(--text3); margin-top:1px; }
+.sc-badge {
+  padding:3px 8px; border-radius:100px;
+  font-size:10px; font-weight:600;
+  background:var(--accent); color:#fff;
+  margin-left:4px;
+}
+.sc-badge.green { background:var(--green); }
+
+/* STATS STRIP */
+.stats-strip {
+  display:flex; justify-content:center; gap:0;
+  padding:0 5vw 80px;
+  position:relative; z-index:10;
+}
+.stat-item {
+  padding:32px 48px;
+  text-align:center;
+  border-right:1px solid var(--border);
+}
+.stat-item:last-child { border-right:none; }
+.stat-num {
+  font-family:'Instrument Serif',serif;
+  font-size:48px;
+  letter-spacing:-.03em;
+  color:var(--text);
+  display:block;
+}
+.stat-label { font-size:13px; color:var(--text3); font-weight:400; margin-top:4px; }
+
+/* FEATURES */
+.features {
+  padding:80px 5vw;
+  max-width:1200px; margin:0 auto;
+}
+.section-eyebrow {
+  font-size:12px; font-weight:700; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--accent);
+  margin-bottom:16px;
+}
+.section-title {
+  font-family:'Instrument Serif',serif;
+  font-size:clamp(36px,4vw,52px);
+  letter-spacing:-.025em;
+  line-height:1.1;
+  margin-bottom:14px;
+}
+.section-sub {
+  font-size:16px; color:var(--text2); font-weight:300;
+  line-height:1.7; max-width:500px;
+}
+.features-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  grid-template-rows:auto auto;
+  gap:16px;
+  margin-top:52px;
+}
+.feat {
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:32px;
+  transition:all .2s;
+  position:relative; overflow:hidden;
+}
+.feat:hover {
+  box-shadow:var(--shadow-lg);
+  transform:translateY(-3px);
+  border-color:rgba(26,86,219,.2);
+}
+.feat.big { grid-column:span 2; }
+.feat-icon {
+  width:48px; height:48px; border-radius:12px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:22px; margin-bottom:20px;
+}
+.feat h3 {
+  font-family:'Instrument Serif',serif;
+  font-size:22px; letter-spacing:-.01em;
+  margin-bottom:8px;
+}
+.feat p { font-size:14px; color:var(--text2); line-height:1.65; font-weight:300; }
+.feat-visual {
+  margin-top:24px;
+  background:var(--bg);
+  border-radius:12px;
+  padding:20px;
+  border:1px solid var(--border);
+}
+.mini-profile {
+  display:flex; align-items:center; gap:12px;
+  margin-bottom:14px;
+}
+.mini-tags { display:flex; flex-wrap:wrap; gap:6px; }
+.mini-tag {
+  padding:4px 10px; border-radius:100px;
+  font-size:11px; font-weight:600;
+  background:var(--accent); color:#fff;
+}
+.mini-tag.v { background:#7c3aed; }
+.mini-tag.g { background:var(--green); }
+.mini-tag.o { background:#ea580c; }
+
+/* Event cards */
+.event-mini {
+  display:flex; align-items:center; gap:12px;
+  padding:12px; background:var(--surface);
+  border-radius:10px; border:1px solid var(--border);
+  margin-bottom:8px;
+}
+.event-mini:last-child { margin-bottom:0; }
+.ev-date {
+  width:44px; height:44px; border-radius:10px;
+  background:linear-gradient(135deg,var(--accent),var(--accent3));
+  color:#fff; display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  flex-shrink:0;
+}
+.ev-date strong { font-size:16px; font-weight:800; line-height:1; }
+.ev-date span { font-size:9px; font-weight:600; letter-spacing:.05em; }
+.ev-info { flex:1; }
+.ev-name { font-size:13px; font-weight:600; }
+.ev-meta { font-size:11px; color:var(--text3); margin-top:2px; }
+.ev-badge {
+  padding:3px 8px; border-radius:100px;
+  font-size:10px; font-weight:600;
+  background:var(--accent); color:#fff;
+}
+
+/* CTA */
+.cta-wrap {
+  padding:0 5vw 100px;
+}
+.cta-inner {
+  max-width:1200px; margin:0 auto;
+  background:var(--text);
+  border-radius:28px;
+  padding:72px 80px;
+  display:flex; align-items:center; justify-content:space-between; gap:40px;
+  position:relative; overflow:hidden;
+}
+.cta-inner::before {
+  content:'';
+  position:absolute;
+  right:-120px; top:-120px;
+  width:400px; height:400px;
+  background:radial-gradient(circle,rgba(124,58,237,.25),transparent 70%);
+  border-radius:50%;
+}
+.cta-inner::after {
+  content:'';
+  position:absolute;
+  left:40%; bottom:-80px;
+  width:300px; height:300px;
+  background:radial-gradient(circle,rgba(26,86,219,.2),transparent 70%);
+  border-radius:50%;
+}
+.cta-text { position:relative; z-index:1; }
+.cta-text h2 {
+  font-family:'Instrument Serif',serif;
+  font-size:clamp(28px,3vw,44px);
+  letter-spacing:-.025em;
+  color:#fff; margin-bottom:10px; line-height:1.1;
+}
+.cta-text p { color:rgba(255,255,255,.55); font-size:15px; font-weight:300; line-height:1.6; }
+.cta-btns { display:flex; gap:12px; position:relative; z-index:1; flex-wrap:wrap; }
+.btn-white { background:#fff; color:var(--text); }
+.btn-white:hover { background:#f0ede6; transform:translateY(-1px); }
+.btn-outline-white { background:transparent; color:rgba(255,255,255,.7); border:1px solid rgba(255,255,255,.2); }
+.btn-outline-white:hover { background:rgba(255,255,255,.08); color:#fff; }
+
+/* FOOTER */
+footer {
+  border-top:1px solid var(--border);
+  padding:32px 5vw;
+  display:flex; align-items:center; justify-content:space-between;
+  font-size:13px; color:var(--text3);
+}
+.footer-logo {
+  font-family:'Instrument Serif',serif;
+  font-size:20px; color:var(--text);
+}
+.footer-links { display:flex; gap:24px; }
+.footer-links a { color:var(--text3); text-decoration:none; transition:color .15s; }
+.footer-links a:hover { color:var(--text); }
+
+/* RESPONSIVE */
+@media(max-width:768px) {
+  .nav-links { display:none; }
+  .features-grid { grid-template-columns:1fr; }
+  .feat.big { grid-column:span 1; }
+  .cta-inner { flex-direction:column; text-align:center; padding:48px 32px; }
+  .cta-btns { justify-content:center; }
+  .stats-strip { flex-wrap:wrap; }
+  .stat-item { border-right:none; border-bottom:1px solid var(--border); width:50%; }
+  .student-card { display:none; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="#">
+    <div class="logo-mark">
+      <svg viewBox="0 0 18 18" fill="none">
+        <circle cx="9" cy="9" r="8" stroke="white" stroke-width="1.5"/>
+        <path d="M3 9 Q9 3 15 9 Q9 15 3 9Z" fill="white" opacity=".7"/>
+      </svg>
+    </div>
+    Studentin
+  </a>
+  <div class="nav-links">
+    <a class="nav-link" href="#">Features</a>
+    <a class="nav-link" href="#">Communities</a>
+    <a class="nav-link" href="#">Events</a>
+    <a class="nav-link" href="#">Pricing</a>
+  </div>
+  <div class="nav-cta">
+    <button class="btn btn-ghost">Log in</button>
+    <button class="btn btn-dark">Join free →</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-top">
+    <div class="hero-pill">
+      <div class="pill-dot">🌍</div>
+      Now live in 40+ countries
+    </div>
+    <h1>Where students<br><em>connect</em> &amp; grow<br>together</h1>
+    <p>The global network built for students — showcase your work, find opportunities, and connect with peers across every college on the planet.</p>
+    <div class="hero-btns">
+      <button class="btn btn-dark btn-lg">Create your profile →</button>
+      <button class="btn btn-ghost btn-lg">See how it works</button>
+    </div>
+    <div class="hero-social-proof">
+      <div class="proof-avatars">
+        <div class="proof-av" style="background:#2d5be3;">A</div>
+        <div class="proof-av" style="background:#7c3aed;">S</div>
+        <div class="proof-av" style="background:#059669;">R</div>
+        <div class="proof-av" style="background:#ea580c;">K</div>
+        <div class="proof-av" style="background:#0ea5e9;">M</div>
+      </div>
+      <span>Join 240+ students already connected</span>
+    </div>
+  </div>
+
+  <!-- Earth Canvas -->
+  <div class="earth-section">
+    <canvas id="earthCanvas"></canvas>
+
+    <!-- Floating student cards -->
+    <div class="student-card" style="top:14%;left:6%;--fd:3.8s;--rot:-2deg;--rot2:1deg;">
+      <div class="sc-avatar" style="background:linear-gradient(135deg,#2d5be3,#7c3aed);">A</div>
+      <div>
+        <div class="sc-name">Aisha Rahman</div>
+        <div class="sc-sub">MIT · Computer Science</div>
+      </div>
+      <span class="sc-badge">Connected ✓</span>
+    </div>
+
+    <div class="student-card" style="top:18%;right:7%;--fd:4.5s;--rot:1.5deg;--rot2:-1deg;animation-delay:.6s;">
+      <div class="sc-avatar" style="background:linear-gradient(135deg,#059669,#0ea5e9);">S</div>
+      <div>
+        <div class="sc-name">Siddharth Nair</div>
+        <div class="sc-sub">IIT Bombay · ECE</div>
+      </div>
+      <span class="sc-badge green">Open to work</span>
+    </div>
+
+    <div class="student-card" style="bottom:22%;left:8%;--fd:5s;--rot:1deg;--rot2:-2deg;animation-delay:1s;">
+      <div class="sc-avatar" style="background:linear-gradient(135deg,#ea580c,#eab308);">L</div>
+      <div>
+        <div class="sc-name">Léa Dubois</div>
+        <div class="sc-sub">Sciences Po Paris</div>
+      </div>
+      <span class="sc-badge" style="background:#7c3aed">New friend</span>
+    </div>
+
+    <div class="student-card" style="bottom:26%;right:6%;--fd:4.2s;--rot:-1deg;--rot2:2deg;animation-delay:.3s;">
+      <div class="sc-avatar" style="background:linear-gradient(135deg,#db2777,#7c3aed);">K</div>
+      <div>
+        <div class="sc-name">Kenji Tanaka</div>
+        <div class="sc-sub">Tokyo University · CS</div>
+      </div>
+      <span class="sc-badge">Hackathon →</span>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-strip">
+  <div class="stat-item">
+    <span class="stat-num" id="s1">0</span>
+    <div class="stat-label">Students worldwide</div>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num" id="s3">0</span>
+    <div class="stat-label">Countries</div>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num" id="s4">0</span>
+    <div class="stat-label">Active communities</div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section class="features">
+  <div class="section-eyebrow">Platform</div>
+  <div class="section-title">Everything a student<br>needs to launch their career</div>
+  <p class="section-sub">We built the platform we wish existed in college. Real connections, real opportunities.</p>
+
+  <div class="features-grid">
+    <div class="feat big">
+      <div class="feat-icon" style="background:#eef1fd;">👤</div>
+      <h3>Smart Student Profiles</h3>
+      <p>A profile that actually reflects you — projects, skills, achievements, and the story behind your ambition. Way better than a resume.</p>
+      <div class="feat-visual">
+        <div class="mini-profile">
+          <div style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#2d5be3,#7c3aed);display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:700;color:#fff;flex-shrink:0;">R</div>
+          <div>
+            <div style="font-size:14px;font-weight:600;">Rahul Kumar</div>
+            <div style="font-size:12px;color:var(--text3);">IIT Bombay · CSE · Class of 2026</div>
+          </div>
+          <div style="margin-left:auto;">
+            <button class="btn btn-accent" style="padding:6px 16px;font-size:12px;">Connect</button>
+          </div>
+        </div>
+        <div class="mini-tags">
+          <span class="mini-tag">React</span>
+          <span class="mini-tag v">ML</span>
+          <span class="mini-tag g">Open to work</span>
+          <span class="mini-tag o">Hackathon x3</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="feat">
+      <div class="feat-icon" style="background:#f3e8ff;">🚀</div>
+      <h3>Project Showcase</h3>
+      <p>Share what you've built. Get feedback, find collaborators, attract recruiters.</p>
+    </div>
+
+    <div class="feat">
+      <div class="feat-icon" style="background:#ecfdf5;">💬</div>
+      <h3>Real-time Messaging</h3>
+      <p>Chat with peers, mentors, and collaborators across the globe instantly.</p>
+    </div>
+
+    <div class="feat big">
+      <div class="feat-icon" style="background:#fff7ed;">🎯</div>
+      <h3>Events &amp; Hackathons</h3>
+      <p>Discover and join competitions, workshops, and meetups happening globally — or create your own.</p>
+      <div class="feat-visual">
+        <div class="event-mini">
+          <div class="ev-date"><strong>24</strong><span>MAY</span></div>
+          <div class="ev-info">
+            <div class="ev-name">Global Hackathon 2025</div>
+            <div class="ev-meta">🌍 Online · 4,200 registered</div>
+          </div>
+          <span class="ev-badge">Register</span>
+        </div>
+        <div class="event-mini">
+          <div class="ev-date" style="background:linear-gradient(135deg,var(--green),#0ea5e9)"><strong>01</strong><span>JUN</span></div>
+          <div class="ev-info">
+            <div class="ev-name">AI/ML Summit — Student Edition</div>
+            <div class="ev-meta">🇮🇳 Bangalore · In-person</div>
+          </div>
+          <span class="ev-badge" style="background:var(--green)">Free</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-wrap">
+  <div class="cta-inner">
+    <div class="cta-text">
+      <h2>Your network is your<br>greatest asset.</h2>
+      <p>Start building it today. Free forever for students.<br>No credit card needed.</p>
+    </div>
+    <div class="cta-btns">
+      <button class="btn btn-white btn-lg">Create free profile →</button>
+      <button class="btn btn-outline-white btn-lg">Explore the platform</button>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Studentin</div>
+  <div class="footer-links">
+    <a href="#">About</a>
+    <a href="#">Privacy</a>
+    <a href="#">Terms</a>
+    <a href="#">Contact</a>
+  </div>
+  <div>© 2025 Studentin. All rights reserved.</div>
+</footer>
+
+<script>
+// ============ EARTH + CONNECTIONS CANVAS ============
+const canvas = document.getElementById('earthCanvas');
+const ctx = canvas.getContext('2d');
+let W, H, cx, cy, earthR;
+
+function resize() {
+  W = canvas.width = canvas.offsetWidth;
+  H = canvas.height = canvas.offsetHeight;
+  cx = W / 2;
+  cy = H / 2;
+  earthR = Math.min(W, H) * 0.28;
+}
+resize();
+window.addEventListener('resize', resize);
+
+// Earth rotation — faster!
+let rotation = 0;
+
+function latLonTo3D(lat, lon, r) {
+  const phi = (90 - lat) * Math.PI / 180;
+  const theta = (lon + rotation) * Math.PI / 180;
+  return {
+    x: cx + r * Math.sin(phi) * Math.cos(theta),
+    y: cy + r * Math.cos(phi),
+    z: Math.sin(phi) * Math.sin(theta)
+  };
+}
+
+// Real continent outlines as lat/lon polylines
+// North America
+const northAmerica = [
+  [70,-140],[72,-120],[70,-100],[68,-85],[65,-75],[60,-65],[55,-60],[50,-55],
+  [47,-53],[45,-60],[44,-66],[42,-70],[41,-72],[40,-74],[35,-75],[30,-80],
+  [25,-80],[24,-82],[23,-84],[20,-87],[15,-88],[10,-85],[8,-77],[8,-76],
+  [10,-75],[12,-72],[15,-68],[18,-65],[20,-60],[22,-58],[25,-55],[28,-50],
+  [30,-48],[25,-48],[20,-45],[15,-43],[10,-38],[5,-35],[0,-30],
+  [-5,-35],[-10,-37],[-15,-39],[-20,-40],[-25,-43],[-30,-50],[-33,-52],
+  [-35,-57],[-38,-62],[-40,-62],[-42,-65],[-45,-65],[-48,-66],[-50,-68],
+  [-53,-70],[-55,-68],[-55,-65],[-53,-58],[-50,-50],[-45,-42],[-40,-38],
+  [-33,-35],[-25,-33],[-20,-35],[-15,-38],[-10,-37],[-5,-35],
+  // back up west coast of S.Am going north — skip, just close
+  [0,-50],[5,-53],[10,-62],[12,-68],[15,-73],[18,-76],[20,-77],[23,-82],
+  [25,-80],[28,-80],[30,-81],[32,-80],[35,-76],[37,-76],[38,-75],[40,-74],
+  [42,-70],[43,-65],[45,-61],[46,-54],[48,-54],[50,-55],[53,-57],[55,-60],
+  [58,-62],[60,-65],[62,-68],[63,-68],[65,-75],[68,-85],[70,-100],[72,-120],[70,-140]
+];
+
+// Europe
+const europe = [
+  [71,28],[70,20],[68,15],[65,14],[62,5],[60,5],[58,5],[55,8],[54,9],
+  [53,10],[52,5],[51,3],[50,2],[48,-2],[47,-2],[45,-1],[44,-8],[43,-8],
+  [42,-8],[40,-8],[38,-8],[36,-6],[36,-5],[37,-2],[38,0],[40,0],[41,2],
+  [42,3],[43,5],[43,7],[44,8],[44,10],[45,12],[45,13],[44,14],[43,16],
+  [42,18],[41,20],[40,22],[38,22],[37,22],[36,23],[35,24],[35,26],[36,28],
+  [38,26],[40,26],[41,28],[42,28],[43,28],[44,29],[45,30],[46,30],[47,32],
+  [48,33],[49,34],[50,35],[51,35],[53,35],[54,33],[55,30],[57,27],[58,25],
+  [59,24],[60,22],[61,20],[62,22],[63,24],[64,26],[65,28],[66,28],[67,28],
+  [68,28],[70,28],[71,28]
+];
+
+// Africa
+const africa = [
+  [37,10],[35,12],[33,12],[30,32],[28,34],[25,35],[22,37],[18,38],[15,42],
+  [12,44],[10,43],[8,40],[5,40],[3,42],[0,42],[-5,40],[-10,40],[-15,35],
+  [-20,35],[-25,34],[-30,30],[-33,26],[-35,22],[-34,18],[-32,18],[-30,17],
+  [-25,14],[-20,11],[-15,12],[-10,14],[-5,10],[0,8],[5,2],[5,-2],[3,-8],
+  [1,-10],[0,-10],[-5,-10],[-10,-14],[-15,-12],[-18,-12],[-20,-17],[-18,-20],
+  [-15,-20],[-10,-15],[-5,-15],[0,-15],[5,-13],[8,-10],[10,-15],[12,-15],
+  [14,-17],[15,-17],[16,-15],[18,-15],[20,-17],[22,-18],[24,-15],[26,-15],
+  [28,-13],[30,-10],[32,-12],[33,-8],[35,-6],[36,-5],[37,10]
+];
+
+// Asia (simplified)
+const asia = [
+  [70,30],[68,40],[65,50],[63,60],[62,70],[62,80],[60,90],[58,100],[55,110],
+  [53,120],[50,130],[48,135],[45,135],[42,130],[40,128],[38,122],[35,120],
+  [30,122],[28,120],[25,118],[22,114],[20,110],[18,108],[15,108],[12,108],
+  [10,105],[8,105],[5,103],[1,104],[-2,108],[-5,110],[-8,115],[-8,125],
+  [-5,130],[-2,130],[0,128],[2,120],[5,118],[8,115],[10,108],[12,100],
+  [15,100],[18,100],[20,93],[22,90],[25,90],[28,88],[30,82],[32,78],
+  [28,78],[25,70],[22,68],[20,66],[18,58],[15,50],[12,45],[10,45],[8,45],
+  [10,50],[12,52],[15,55],[18,56],[20,58],[22,60],[25,60],[28,62],[30,65],
+  [33,68],[35,70],[38,72],[40,70],[42,68],[45,65],[48,68],[50,70],[52,75],
+  [55,80],[58,82],[60,80],[63,70],[65,60],[68,55],[70,55],[72,60],[73,70],
+  [73,80],[72,90],[70,100],[68,110],[65,110],[63,120],[62,130],[60,140],
+  [58,140],[55,135],[53,128],[50,120],[48,110],[45,100],[42,90],[40,80],
+  [38,70],[35,62],[33,55],[30,50],[28,46],[25,42],[22,40],[18,40],[15,42],
+  [12,44],[10,43],[8,40],[5,40],[3,42],[0,42],[-2,40],
+  [5,45],[8,50],[10,55],[12,58],[15,60],[18,62],[20,65],[23,68],
+  [25,67],[27,65],[28,62],[30,60],[33,60],[35,62],[38,65],[40,65],
+  [42,65],[45,68],[48,70],[50,72],[52,78],[55,82],[58,85],[60,82],
+  [62,75],[65,65],[68,60],[70,55],[72,55],[73,65],[73,75],[72,85],
+  [70,90],[68,98],[65,105],[62,110],[60,120],[58,130],[55,132],[53,125],
+  [50,115],[48,105],[45,95],[42,85],[40,75],[38,65],[35,57],[32,50],
+  [30,48],[28,48],[25,44],[22,40],[20,40],[18,40],
+  [70,30]
+];
+
+// Australia
+const australia = [
+  [-15,130],[-14,136],[-12,136],[-12,142],[-14,144],[-16,146],[-18,147],
+  [-20,148],[-22,150],[-24,152],[-27,153],[-30,153],[-32,152],[-34,151],
+  [-36,150],[-38,147],[-38,145],[-37,142],[-38,140],[-36,137],[-34,135],
+  [-32,134],[-32,128],[-34,124],[-34,120],[-32,116],[-30,115],[-28,114],
+  [-25,114],[-22,114],[-20,119],[-18,122],[-16,124],[-14,126],[-12,130],
+  [-12,132],[-13,133],[-14,132],[-15,130]
+];
+
+// South America
+const southAmerica = [
+  [10,-73],[8,-77],[5,-77],[3,-78],[0,-80],[-3,-80],[-5,-81],[-5,-80],
+  [-3,-78],[-1,-77],[-2,-75],[-5,-73],[-8,-75],[-10,-76],[-12,-77],
+  [-14,-76],[-16,-75],[-18,-72],[-20,-70],[-22,-68],[-24,-70],[-26,-70],
+  [-28,-72],[-30,-72],[-32,-72],[-34,-72],[-36,-72],[-38,-72],[-40,-73],
+  [-42,-73],[-44,-66],[-46,-66],[-48,-66],[-50,-68],[-52,-68],[-54,-68],
+  [-55,-66],[-55,-64],[-53,-58],[-50,-50],[-45,-42],[-40,-38],[-35,-35],
+  [-28,-48],[-22,-42],[-18,-39],[-15,-39],[-10,-37],[-5,-35],[0,-50],
+  [3,-52],[5,-53],[7,-58],[8,-60],[10,-62],[10,-65],[9,-67],[8,-65],
+  [7,-62],[6,-60],[5,-58],[5,-55],[6,-53],[8,-50],[10,-62],[8,-77],[10,-73]
+];
+
+const continentShapes = [northAmerica, europe, africa, asia, australia, southAmerica];
+const continentColors = [
+  'rgba(34,100,220,0.55)',   // N.America — blue
+  'rgba(80,60,200,0.5)',     // Europe — purple
+  'rgba(20,150,90,0.5)',     // Africa — green
+  'rgba(200,100,30,0.45)',   // Asia — orange
+  'rgba(180,50,120,0.5)',    // Australia — pink
+  'rgba(30,120,200,0.5)',    // S.America — blue
+];
+
+function drawContinents() {
+  ctx.save();
+  ctx.beginPath();
+  ctx.arc(cx, cy, earthR, 0, Math.PI * 2);
+  ctx.clip();
+
+  continentShapes.forEach((shape, si) => {
+    ctx.beginPath();
+    let started = false;
+    let lastVis = false;
+    shape.forEach(([lat, lon]) => {
+      const p = latLonTo3D(lat, lon, earthR * 0.995);
+      if (p.z > -0.15) {
+        if (!started || !lastVis) { ctx.moveTo(p.x, p.y); started = true; }
+        else ctx.lineTo(p.x, p.y);
+        lastVis = true;
+      } else {
+        lastVis = false;
+      }
+    });
+    ctx.fillStyle = continentColors[si];
+    ctx.fill();
+    ctx.strokeStyle = continentColors[si].replace(/[\d.]+\)$/, '0.8)');
+    ctx.lineWidth = 0.6;
+    ctx.stroke();
+  });
+  ctx.restore();
+}
+
+// City nodes
+const cities = [
+  {lat:40.7, lon:-74,  color:'#2d5be3', label:'New York'},
+  {lat:51.5, lon:-0.1, color:'#7c3aed', label:'London'},
+  {lat:19.0, lon:72.8, color:'#059669', label:'Mumbai'},
+  {lat:35.6, lon:139.6,color:'#ea580c', label:'Tokyo'},
+  {lat:48.8, lon:2.35, color:'#0ea5e9', label:'Paris'},
+  {lat:-33.8,lon:151.2,color:'#db2777', label:'Sydney'},
+  {lat:55.7, lon:37.6, color:'#7c3aed', label:'Moscow'},
+  {lat:1.35, lon:103.8,color:'#059669', label:'Singapore'},
+  {lat:6.5,  lon:3.4,  color:'#ea580c', label:'Lagos'},
+  {lat:-23.5,lon:-46.6,color:'#2d5be3', label:'São Paulo'},
+  {lat:28.6, lon:77.2, color:'#0ea5e9', label:'Delhi'},
+  {lat:31.2, lon:121.5,color:'#db2777', label:'Shanghai'},
+  {lat:43.6, lon:-79.4,color:'#7c3aed', label:'Toronto'},
+  {lat:-34.6,lon:-58.4,color:'#059669', label:'Buenos Aires'},
+  {lat:37.5, lon:127.0,color:'#0ea5e9', label:'Seoul'},
+  {lat:30.0, lon:31.2, color:'#ea580c', label:'Cairo'},
+  {lat:52.5, lon:13.4, color:'#db2777', label:'Berlin'},
+  {lat:34.0, lon:-118, color:'#2d5be3', label:'Los Angeles'},
+];
+
+const connections = [
+  [0,1],[1,2],[2,3],[3,4],[4,0],[5,3],[6,1],[7,3],
+  [8,1],[9,0],[10,2],[11,3],[12,0],[13,9],[14,3],[15,2],
+  [16,1],[17,0],[0,7],[2,10],[4,16],[6,15],[5,11],[8,15],
+  [1,16],[0,12],[7,11],[10,7]
+];
+
+const packets = connections.map(([a,b]) => ({
+  a, b, t: Math.random(),
+  speed: 0.004 + Math.random() * 0.004,
+  color: cities[a].color,
+  active: Math.random() > 0.3
+}));
+
+function drawGrid() {
+  ctx.save();
+  ctx.strokeStyle = 'rgba(26,86,219,0.05)';
+  ctx.lineWidth = 0.7;
+  for (let lat = -80; lat <= 80; lat += 20) {
+    ctx.beginPath(); let first = true;
+    for (let lon = -180; lon <= 180; lon += 3) {
+      const p = latLonTo3D(lat, lon, earthR);
+      if (p.z > 0) { first ? ctx.moveTo(p.x,p.y) : ctx.lineTo(p.x,p.y); first=false; }
+      else first=true;
+    }
+    ctx.stroke();
+  }
+  for (let lon = -180; lon < 180; lon += 20) {
+    ctx.beginPath(); let first = true;
+    for (let lat = -90; lat <= 90; lat += 3) {
+      const p = latLonTo3D(lat, lon, earthR);
+      if (p.z > 0) { first ? ctx.moveTo(p.x,p.y) : ctx.lineTo(p.x,p.y); first=false; }
+      else first=true;
+    }
+    ctx.stroke();
+  }
+  ctx.restore();
+}
+
+function drawArc(p1, p2, color, alpha) {
+  const mx=(p1.x+p2.x)/2, my=(p1.y+p2.y)/2;
+  const dx=mx-cx, dy=my-cy;
+  const cpx=mx-dx*0.4, cpy=my-dy*0.4;
+  ctx.beginPath();
+  ctx.moveTo(p1.x,p1.y);
+  ctx.quadraticCurveTo(cpx,cpy,p2.x,p2.y);
+  const grad=ctx.createLinearGradient(p1.x,p1.y,p2.x,p2.y);
+  const hex=Math.floor(alpha*255).toString(16).padStart(2,'0');
+  grad.addColorStop(0,color+'00');
+  grad.addColorStop(0.5,color+hex);
+  grad.addColorStop(1,color+'00');
+  ctx.strokeStyle=grad; ctx.lineWidth=1.4; ctx.stroke();
+}
+
+function bezierPoint(p1x,p1y,cpx,cpy,p2x,p2y,t){
+  return{
+    x:(1-t)*(1-t)*p1x+2*(1-t)*t*cpx+t*t*p2x,
+    y:(1-t)*(1-t)*p1y+2*(1-t)*t*cpy+t*t*p2y
+  };
+}
+
+let frame = 0;
+
+function draw() {
+  ctx.clearRect(0,0,W,H);
+
+  // Ocean
+  const ocean = ctx.createRadialGradient(cx-earthR*.2,cy-earthR*.2,earthR*.05,cx,cy,earthR);
+  ocean.addColorStop(0,'#dbeafe');
+  ocean.addColorStop(0.5,'#bfdbfe');
+  ocean.addColorStop(1,'#93c5fd');
+  ctx.beginPath(); ctx.arc(cx,cy,earthR,0,Math.PI*2); ctx.fillStyle=ocean; ctx.fill();
+
+  // Atmosphere
+  const atm=ctx.createRadialGradient(cx,cy,earthR*.92,cx,cy,earthR*1.18);
+  atm.addColorStop(0,'rgba(147,197,253,0.2)');
+  atm.addColorStop(1,'rgba(147,197,253,0)');
+  ctx.beginPath(); ctx.arc(cx,cy,earthR*1.18,0,Math.PI*2); ctx.fillStyle=atm; ctx.fill();
+
+  // Grid
+  drawGrid();
+
+  // Continents
+  drawContinents();
+
+  // Connection arcs
+  connections.forEach(([ai,bi])=>{
+    const pa=latLonTo3D(cities[ai].lat,cities[ai].lon,earthR);
+    const pb=latLonTo3D(cities[bi].lat,cities[bi].lon,earthR);
+    if(pa.z>-0.2&&pb.z>-0.2){
+      const alpha=Math.max(0,Math.min(pa.z,pb.z)*0.6+0.25);
+      drawArc(pa,pb,cities[ai].color,alpha);
+    }
+  });
+
+  // Packets
+  packets.forEach(pkt=>{
+    if(!pkt.active) return;
+    pkt.t+=pkt.speed;
+    if(pkt.t>1){pkt.t=0;pkt.active=Math.random()>0.15;}
+    const pa=latLonTo3D(cities[pkt.a].lat,cities[pkt.a].lon,earthR);
+    const pb=latLonTo3D(cities[pkt.b].lat,cities[pkt.b].lon,earthR);
+    if(pa.z>0&&pb.z>0){
+      const mx=(pa.x+pb.x)/2,my=(pa.y+pb.y)/2;
+      const dx=mx-cx,dy=my-cy;
+      const pos=bezierPoint(pa.x,pa.y,mx-dx*.4,my-dy*.4,pb.x,pb.y,pkt.t);
+      const grd=ctx.createRadialGradient(pos.x,pos.y,0,pos.x,pos.y,8);
+      grd.addColorStop(0,pkt.color+'ff');
+      grd.addColorStop(0.5,pkt.color+'66');
+      grd.addColorStop(1,pkt.color+'00');
+      ctx.beginPath(); ctx.arc(pos.x,pos.y,8,0,Math.PI*2); ctx.fillStyle=grd; ctx.fill();
+      ctx.beginPath(); ctx.arc(pos.x,pos.y,2.5,0,Math.PI*2); ctx.fillStyle='#fff'; ctx.fill();
+    }
+  });
+
+  // City nodes + labels
+  cities.forEach(s=>{
+    const p=latLonTo3D(s.lat,s.lon,earthR);
+    if(p.z<0.05) return;
+    const size=3.5+p.z*3;
+    const pulse=Math.sin(frame*.05+s.lon*.12)*.5+.5;
+
+    // Outer pulse
+    ctx.beginPath(); ctx.arc(p.x,p.y,size+6+pulse*7,0,Math.PI*2);
+    ctx.fillStyle=s.color+'15'; ctx.fill();
+    ctx.beginPath(); ctx.arc(p.x,p.y,size+3,0,Math.PI*2);
+    ctx.fillStyle=s.color+'30'; ctx.fill();
+
+    // Node
+    ctx.beginPath(); ctx.arc(p.x,p.y,size,0,Math.PI*2);
+    ctx.fillStyle=s.color; ctx.fill();
+    ctx.strokeStyle='rgba(255,255,255,0.85)'; ctx.lineWidth=1.5; ctx.stroke();
+
+    // Shine
+    ctx.beginPath(); ctx.arc(p.x-size*.3,p.y-size*.3,size*.35,0,Math.PI*2);
+    ctx.fillStyle='rgba(255,255,255,0.55)'; ctx.fill();
+
+    // City label — only if clearly visible
+    if(p.z > 0.35) {
+      ctx.font = `bold ${Math.round(9+p.z*3)}px Geist, sans-serif`;
+      ctx.fillStyle = 'rgba(15,14,12,0.75)';
+      ctx.textAlign = 'left';
+      // Small white bg for readability
+      const lw = ctx.measureText(s.label).width;
+      ctx.fillStyle = 'rgba(255,255,255,0.7)';
+      ctx.beginPath();
+      ctx.roundRect(p.x+size+3, p.y-8, lw+8, 16, 4);
+      ctx.fill();
+      ctx.fillStyle = 'rgba(15,14,12,0.8)';
+      ctx.fillText(s.label, p.x+size+7, p.y+4);
+    }
+  });
+
+  // Shine overlay
+  const shine=ctx.createRadialGradient(cx-earthR*.3,cy-earthR*.3,0,cx,cy,earthR);
+  shine.addColorStop(0,'rgba(255,255,255,0.2)');
+  shine.addColorStop(0.5,'rgba(255,255,255,0)');
+  shine.addColorStop(1,'rgba(20,40,90,0.1)');
+  ctx.beginPath(); ctx.arc(cx,cy,earthR,0,Math.PI*2); ctx.fillStyle=shine; ctx.fill();
+
+  rotation += 0.25; // faster rotation!
+  frame++;
+  requestAnimationFrame(draw);
+}
+draw();
+
+setInterval(()=>{
+  packets.forEach(p=>{ if(!p.active&&Math.random()>.5) p.active=true; });
+},600);
+
+// ============ COUNTER ANIMATION ============
+const counters = [
+  {el: document.getElementById('s1'), target: 240, suffix: '+', format: n => n},
+  {el: document.getElementById('s3'), target: 40, suffix: '+', format: n => n},
+  {el: document.getElementById('s4'), target: 18, suffix: '', format: n => n},
+];
+
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      counters.forEach(c => {
+        let start = 0;
+        const duration = 1800;
+        const step = timestamp => {
+          if (!start) start = timestamp;
+          const progress = Math.min((timestamp - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          const val = Math.floor(eased * c.target);
+          c.el.textContent = c.format(val) + c.suffix;
+          if (progress < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+      });
+      obs.disconnect();
+    }
+  });
+}, { threshold: 0.3 });
+
+obs.observe(document.getElementById('s1'));
+</script>
+</body>
+</html>
